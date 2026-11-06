@@ -8,7 +8,7 @@ The pipeline avoids the need for paid cloud data warehouses (like Snowflake or B
 ## Architecture & Tech Stack
 *   **Data Generation & Ingestion:** Python (pandas, numpy)
 *   **Data Warehouse:** DuckDB
-*   **Data Transformation:** dbt (Data Build Tool)
+* Data Transformation: dbt (Data Build Tool) & Advanced SQL
 *   **Development Environment:** VS Code on Windows
 
 ## Data Modeling Strategy
