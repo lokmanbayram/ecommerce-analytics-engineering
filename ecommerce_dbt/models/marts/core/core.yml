@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: fct_orders
+    description: "Ana sipariş fact tablosu. Staging katmanındaki orders ve customers verilerinin birleşiminden oluşur."
+    columns:
+      - name: order_id
+        description: "Siparişin benzersiz kimliği (Primary Key)."
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        description: "Siparişi veren müşterinin kimliği."
+        tests:
+          - not_null
+      - name: amount
+        description: "Siparişin toplam tutarı."
+        tests:
+          - not_null
+      - name: status
+        description: "Siparişin durumu (completed, returned, cancelled)."
+        tests:
+          - accepted_values:
+              values: ['completed', 'returned', 'cancelled']
+
+  - name: dim_customers
+    description: "Müşterilerin sipariş geçmişlerine göre özetlenmiş (Customer 360) boyut tablosu."
+    columns:
+      - name: customer_id
+        description: "Müşterinin benzersiz kimliği."
+        tests:
+          - unique
+          - not_null
+      - name: lifetime_value
+        description: "Müşterinin başarılı (completed) siparişlerinden elde edilen toplam gelir."
+        tests:
+          - not_null
